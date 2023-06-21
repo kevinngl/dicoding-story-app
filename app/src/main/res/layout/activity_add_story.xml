@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewPhotoPreview"
+        android:layout_width="238dp"
+        android:layout_height="216dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@mipmap/ic_placeholder"
+        android:scaleType="centerCrop" />
+
+    <Button
+        android:id="@+id/buttonOpenCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewPhotoPreview"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="52dp"
+        android:layout_toStartOf="@id/buttonUploadFromGallery"
+        android:text="Camera" />
+
+    <Button
+        android:id="@+id/buttonUploadFromGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewPhotoPreview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="86dp"
+        android:text="Gallery" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonUploadFromGallery"
+        android:layout_marginTop="17dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Upload" />
+
+</RelativeLayout>
