@@ -1,5 +1,6 @@
 package com.bangkit.kevin.dicodingstoryapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+    private fun saveTokenToPreferences(token: String?) {
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("userToken", token)
+        editor.apply()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +42,11 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if (response.isSuccessful) {
                         // Login successful
-                        val token = response.body()?.token
-                        // Do something with the token
+                        val loginResponse = response.body()
+                        val token = loginResponse?.token
+                        // Save the token to shared preferences or other storage mechanism
+                        saveTokenToPreferences(token)
 
-                        // Start HomeActivity
                         val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                         startActivity(intent)
                         finish() // Optional: finish the LoginActivity to prevent going back to it

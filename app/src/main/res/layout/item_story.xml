@@ -6,14 +6,14 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/imageViewPhoto"
+        android:id="@+id/iv_detail_photo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:src="@mipmap/ic_placeholder"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/tv_detail_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -22,20 +22,11 @@
         android:layout_marginTop="8dp" />
 
     <TextView
-        android:id="@+id/textViewDescription"
+        android:id="@+id/tv_detail_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="Description"
-        android:layout_marginTop="4dp" />
-
-    <TextView
-        android:id="@+id/textViewCreatedAt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#999999"
-        android:text="21/06/2023"
         android:layout_marginTop="4dp" />
 
 </LinearLayout>

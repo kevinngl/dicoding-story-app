@@ -2,6 +2,7 @@ package com.bangkit.kevin.dicodingstoryapp
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 
 class AddStoryActivity : BaseActivity() {
 
@@ -17,8 +18,13 @@ class AddStoryActivity : BaseActivity() {
     }
 
     override fun onNavigationAddStorySelected() {
-        // Already on Home screen
-
+        AlertDialog.Builder(this)
+            .setTitle("Add To Story")
+            .setMessage("You are already in the Add To Story screen.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun onNavigationProfileSelected() {
