@@ -9,14 +9,14 @@ interface ApiService {
     @FormUrlEncoded
     @POST("login")
     fun login(
-        @Field("username") username: String,
+        @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("register")
     fun register(
-        @Field("username") username: String,
+        @Field("name") username: String,
         @Field("password") password: String,
         @Field("email") email: String
     ): Call<RegisterResponse>

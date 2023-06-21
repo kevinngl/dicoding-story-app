@@ -1,6 +1,8 @@
 package com.bangkit.kevin.dicodingstoryapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,17 +27,16 @@ class RegisterActivity : AppCompatActivity() {
         registerButton = findViewById(R.id.buttonRegister)
 
         registerButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
+            val name = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
             val email = emailEditText.text.toString()
 
             // Call the register API
-            val call = ApiClient.apiService.register(username, password, email)
+            val call = ApiClient.apiService.register(name, password, email)
+            Log.d("Call", "Call: $call")
+
             call.enqueue(object : Callback<RegisterResponse> {
-                override fun onResponse(
-                    call: Call<RegisterResponse>,
-                    response: Response<RegisterResponse>
-                ) {
+                override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                     if (response.isSuccessful) {
                         // Registration successful
                         Toast.makeText(
@@ -43,6 +44,11 @@ class RegisterActivity : AppCompatActivity() {
                             "Registration successful.",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        // Start MainActivity
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish() // Optional: finish the RegisterActivity to prevent going back to it
                     } else {
                         // Registration failed
                         Toast.makeText(
