@@ -12,7 +12,6 @@ class AddStoryActivity : BaseActivity() {
     }
 
     override fun onNavigationHomeSelected() {
-        // Handle Home item click
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }

@@ -22,12 +22,10 @@ class HomeActivity : BaseActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        // Fetch story list data
         fetchStoryList()
     }
 
     override fun onNavigationHomeSelected() {
-        // Display alert indicating already in Home screen
         AlertDialog.Builder(this)
             .setTitle("Home")
             .setMessage("You are already in the Home screen.")
@@ -38,12 +36,10 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onNavigationAddStorySelected() {
-        // Start AddStoryActivity
         startActivity(Intent(this, AddStoryActivity::class.java))
     }
 
     override fun onNavigationProfileSelected() {
-        // Start ProfileActivity
         startActivity(Intent(this, ProfileActivity::class.java))
         finish()
     }
@@ -52,10 +48,8 @@ class HomeActivity : BaseActivity() {
         return sharedPreferences.getString("userToken", null)
     }
     private fun fetchStoryList() {
-        // Retrieve the token from shared preferences or other storage mechanism
         val token = retrieveTokenFromPreferences()
 
-        // Initialize ApiService
         storyApiService = ApiClient.apiService
 
         val call = storyApiService.getAllStories("Bearer $token", null, null, null)
@@ -69,15 +63,11 @@ class HomeActivity : BaseActivity() {
                         recyclerView.adapter = adapter
                     }
                 } else {
-                    // Request failed
-                    // Handle error or display an appropriate message
                     Toast.makeText(this@HomeActivity, "Failed to fetch story list", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Story>>, t: Throwable) {
-                // Network request failed
-                // Handle error or display an appropriate message
                 Toast.makeText(this@HomeActivity, "Network request failed", Toast.LENGTH_SHORT).show()
             }
         })

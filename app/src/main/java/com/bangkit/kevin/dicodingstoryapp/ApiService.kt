@@ -41,7 +41,7 @@ interface ApiService {
 
     @GET("stories")
     fun getAllStories(
-        @Header("Authorization") token: String?,
+        @Header("Authorization") token: String,
         @Query("page") page: Int?,
         @Query("size") size: Int?,
         @Query("location") location: Int?

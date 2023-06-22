@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
+
     private fun saveTokenToPreferences(token: String?) {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -35,24 +36,19 @@ class LoginActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            // Call the login API
             val call = ApiClient.apiService.login(email, password)
-
 
             call.enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if (response.isSuccessful) {
-                        // Login successful
                         val loginResponse = response.body()
-                        val token = loginResponse?.token
-                        // Save the token to shared preferences or other storage mechanism
+                        val token = loginResponse?.loginResult?.token
                         saveTokenToPreferences(token)
 
                         val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                         startActivity(intent)
-                        finish() // Optional: finish the LoginActivity to prevent going back to it
+                        finish()
                     } else {
-                        // Login failed
                         Toast.makeText(
                             this@LoginActivity,
                             "Login failed. Please try again.",
@@ -62,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    // Network request failed
                     Toast.makeText(
                         this@LoginActivity,
                         "Network request failed. Please check your internet connection.",

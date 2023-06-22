@@ -31,26 +31,22 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
             val email = emailEditText.text.toString()
 
-            // Call the register API
             val call = ApiClient.apiService.register(name, password, email)
             Log.d("Call", "Call: $call")
 
             call.enqueue(object : Callback<RegisterResponse> {
                 override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                     if (response.isSuccessful) {
-                        // Registration successful
                         Toast.makeText(
                             this@RegisterActivity,
                             "Registration successful.",
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        // Start MainActivity
                         val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                         startActivity(intent)
-                        finish() // Optional: finish the RegisterActivity to prevent going back to it
+                        finish()
                     } else {
-                        // Registration failed
                         Toast.makeText(
                             this@RegisterActivity,
                             "Registration failed. Please try again.",
@@ -60,7 +56,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                    // Network request failed
                     Toast.makeText(
                         this@RegisterActivity,
                         "Network request failed. Please check your internet connection.",

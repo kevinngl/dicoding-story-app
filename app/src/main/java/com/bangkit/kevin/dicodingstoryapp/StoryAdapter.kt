@@ -33,7 +33,6 @@ class StoryAdapter(private val storyList: List<Story>) : RecyclerView.Adapter<St
             nameTextView.text = story.userName
             descriptionTextView.text = story.description
 
-            // Load image using Glide or any other image loading library
             Glide.with(itemView.context)
                 .load(story.photoUrl)
                 .into(photoImageView)

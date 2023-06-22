@@ -1,8 +1,12 @@
 package com.bangkit.kevin.dicodingstoryapp
 
 data class LoginResponse(
-    val id: String,
+    val error: Boolean,
+    val loginResult: LoginResult,
+    val message: String
+)
+data class LoginResult(
     val name: String,
-    val email: String,
-    val token: String
+    val token: String,
+    val userId: String
 )

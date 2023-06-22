@@ -13,20 +13,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            // Handle bottom navigation item selection
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
-                    // Handle Home item click
                     onNavigationHomeSelected()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_addstory -> {
-                    // Handle Dashboard item click
                     onNavigationAddStorySelected()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_profile -> {
-                    // Handle Profile item click
                     onNavigationProfileSelected()
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -35,7 +31,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    // Abstract methods to be implemented by child activities
     abstract fun onNavigationHomeSelected()
     abstract fun onNavigationAddStorySelected()
     abstract fun onNavigationProfileSelected()
