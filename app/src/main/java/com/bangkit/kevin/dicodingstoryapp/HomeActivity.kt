@@ -58,7 +58,7 @@ class HomeActivity : BaseActivity() {
         // Initialize ApiService
         storyApiService = ApiClient.apiService
 
-        val call = storyApiService.getAllStories("$token", null, null, null)
+        val call = storyApiService.getAllStories("Bearer $token", null, null, null)
 
         call.enqueue(object : Callback<List<Story>> {
             override fun onResponse(call: Call<List<Story>>, response: Response<List<Story>>) {
